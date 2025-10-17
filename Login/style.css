@@ -1,0 +1,40 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root{
+    --body-color: #eeeeee;
+    --primary-color: #005a34;
+    --text-color: #231F20;
+    --border-color: #f2ecff;
+    --shadow-color: #b6b6b6;
+}
+
+body{
+    background: var(--body-color);
+}
+
+.had{
+    position: relative;
+    top: .7rem;
+    margin-bottom: .1rem;
+}
+
+.pi{
+    position: relative;
+
+    left: 1rem;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    background: var(--primary-color);
+}
+
+.pn{
+    font-family:Verdana;
+    position: relative;
+    top: -25px;
+    left: 3.6rem; 
+}
