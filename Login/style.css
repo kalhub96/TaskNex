@@ -6,7 +6,9 @@
 
 :root{
     --body-color: #eeeeee;
+    --box-color: #e4e4e4;
     --primary-color: #005a34;
+    --primary-color: #1fe64a;
     --text-color: #231F20;
     --border-color: #f2ecff;
     --shadow-color: #b6b6b6;
@@ -37,4 +39,60 @@ body{
     position: relative;
     top: -25px;
     left: 3.6rem; 
+}
+
+main .login-box{
+    position: relative;
+    width: 300px;
+    height: 300px;
+    border-radius: 10%;
+    background: var(--box-color);
+    top: 10rem;
+    left: 33rem;
+    text-align: center;
+    border: var(--border-color);
+    box-shadow: var(--shadow-color) 5px 5px;
+}
+
+main .login-box h2{
+    position: relative;
+    top: 1rem;
+    color: var(--text-color);
+}
+
+main .user-box label{
+    position: relative;
+    top: 1.4rem;
+    left: -6rem;
+    color: var(--text-color);
+}
+
+#usernameInput{
+    position: relative;
+    top: 1.7rem;
+    left: -.3rem;
+}
+
+main .user-boxp label{
+    position: relative;
+    top: 2rem;
+    left: -6rem;
+    color: var(--text-color);
+}
+
+#passwordInput{
+    position: relative;
+    top: 2.4rem;
+    left: -.3rem;
+}
+
+.button{
+    position: relative;
+    top: 6rem;
+    width: 12rem;
+    height: 2rem;
+    border-radius: 1rem;
+    border: var(--border-color);
+    box-shadow: var(--shadow-color) 2px 2px;
+    background-color: var(--primary-color);
 }
