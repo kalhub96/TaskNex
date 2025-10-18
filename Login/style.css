@@ -8,7 +8,7 @@
     --body-color: #eeeeee;
     --box-color: #e4e4e4;
     --primary-color: #005a34;
-    --primary-color: #1fe64a;
+    --hover-color: #1fe64a;
     --text-color: #231F20;
     --border-color: #f2ecff;
     --shadow-color: #b6b6b6;
@@ -95,4 +95,15 @@ main .user-boxp label{
     border: var(--border-color);
     box-shadow: var(--shadow-color) 2px 2px;
     background-color: var(--primary-color);
+    transition: background-color 0.3s ease-out;
+}
+
+.button:hover {
+  background-color: var(--hover-color);
+}
+
+.register-link{
+    position: relative;
+    top: 7rem;
+    color: var(--text-color);
 }
