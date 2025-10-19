@@ -44,10 +44,10 @@ body{
 main .login-box{
     position: relative;
     width: 300px;
-    height: 300px;
+    height: 470px;
     border-radius: 10%;
     background: var(--box-color);
-    top: 10rem;
+    top: 5rem;
     left: 33rem;
     text-align: center;
     border: var(--border-color);
@@ -106,4 +106,57 @@ main .user-boxp label{
     position: relative;
     top: 7rem;
     color: var(--text-color);
+}
+
+.forgot-password-link{
+    position: relative;
+    top: 7.5rem;
+    color: var(--text-color);
+}
+
+.forgot-password-link a{
+    color: var(--text-color);
+    text-decoration: none;
+}
+
+.social-login p{
+    position: relative;
+    top: 10rem;
+    color: var(--text-color);
+}
+
+.google-login{
+    position: relative;
+    top: 10.5rem;
+    left: .5rem;
+    width: 12rem;
+    height: 2rem;
+    border-radius: 1rem;
+    border: var(--border-color);
+    box-shadow: var(--shadow-color) 2px 2px;
+    background-color: var(--primary-color);
+    transition: background-color 0.3s ease-out;
+}
+
+.google-login:hover {
+    cursor: pointer;
+    background-color: var(--hover-color);
+}
+
+.facebook-login{
+    position: relative;
+    top: 11rem;
+    left: .5rem;
+    width: 12rem;
+    height: 2rem;
+    border-radius: 1rem;
+    border: var(--border-color);
+    box-shadow: var(--shadow-color) 2px 2px;
+    background-color: var(--primary-color);
+    transition: background-color 0.3s ease-out;
+}
+
+.facebook-login:hover {
+    cursor: pointer;
+    background-color: var(--hover-color);
 }
