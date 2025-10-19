@@ -143,7 +143,7 @@ main .user-boxp label{
     background-color: var(--hover-color);
 }
 
-.facebook-login{
+.github-login{
     position: relative;
     top: 11rem;
     left: .5rem;
@@ -156,7 +156,7 @@ main .user-boxp label{
     transition: background-color 0.3s ease-out;
 }
 
-.facebook-login:hover {
+.github-login:hover {
     cursor: pointer;
     background-color: var(--hover-color);
 }
