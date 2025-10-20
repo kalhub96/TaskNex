@@ -1,0 +1,250 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root{
+    --body-color: #eeeeee;
+    --primary-color: #005a34;
+    --hover-color: #1fe64a;
+    --text-color: #231F20;
+    --border-color: #f2ecff;
+    --shadow-color: #b6b6b6;
+    --sidebar-color: #003d25;
+}
+
+body{
+    background: var(--body-color);
+}
+
+html:focus{
+    outline:none
+}
+
+.had{
+    position: relative;
+    top: .7rem;
+    margin-bottom: .1rem;
+}
+
+.pi{
+    position: relative;
+    left: 1rem;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    background: var(--primary-color);
+}
+
+.pn{
+    font-family:Verdana;
+    position: relative;
+    top: -13px;
+    left: 2.1rem; 
+}
+
+.pn button{
+    text-decoration: none;
+    color: var(--text-color);
+    background: none;
+    border: none;
+    font-size: large;
+    cursor: pointer;
+}
+
+.pn h6{
+    position: relative;
+    top: -1.8rem;
+    left: 7rem;
+}
+
+.ls{
+    position: relative;
+    top: -45px;
+    left: 77rem; 
+    display: inline-block;
+    line-height: 1;
+    margin: 0;
+    padding: 0;
+    
+}
+
+.ls a{
+    text-decoration: none;
+    color: var(--text-color);
+}
+
+.ls h3:hover{
+    cursor: pointer;
+    background-color: var(--hover-color);
+}
+
+.ls :focus{
+    outline:none
+}   
+
+.si{
+    position: relative;
+    top: -46px;
+    left: 77.5rem; 
+    display: inline-block;
+    line-height: 1;
+    margin: 0;
+    padding: 0;
+}
+
+.si a{
+    text-decoration: none;
+    color: var(--text-color);
+}
+
+.si :focus{
+    outline:none
+}
+
+.si h3:hover{
+    cursor: pointer;
+    background-color: var(--hover-color);
+}
+
+.sidebar{
+    height: 100%;
+    width: 500px;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: var(--body-color);
+    overflow-x: hidden;
+    padding-top: 20px;
+    box-shadow:var(--shadow-color)2px 2px;
+    display: none;
+}
+
+.sidebar button{
+    position: relative;
+    top:-1rem;
+    left: 10rem;
+    text-decoration: none;
+    background:none;
+    color: var(--text-color);
+    border: none;
+    text-align: left;
+    cursor: pointer;
+    outline: none;
+    width: 100%;
+    padding: 12px 16px;
+    font-size: 30px;
+}
+
+.sidebar li{
+    position: relative;
+    top: -2.4rem;
+    left: 2rem;
+    font-size: small;
+}
+
+.sidebar svg{
+    position: relative;
+    top: -.7rem;
+    left: .1rem;
+}
+
+.sidebar .ot, .sidebar .st, .sidebar .tp, .sidebar .mp, .sidebar .sr, .sidebar .ca, .sidebar .pw, .sidebar .cwt, .sidebar .gt, .sidebar .lo{
+    position: relative;
+    top: -1rem;
+    left: .8rem;
+    width: 12rem;
+    height: 2rem;
+    margin-bottom: 10px;
+    border-radius: .5rem;
+    background-color: var(--primary-color);
+}
+
+.sidebar .ot:hover, .sidebar .st:hover, .sidebar .tp:hover, .sidebar .mp:hover, .sidebar .sr:hover, .sidebar .ca:hover, .sidebar .pw:hover, .sidebar .cwt:hover, .sidebar .gt:hover, .sidebar .lo:hover{
+    cursor: pointer;
+    background-color: var(--hover-color);
+}
+
+.sidebar ul{
+    list-style-type: none;
+    margin: 1px;
+}
+
+.sidebar ul a{
+    text-decoration: none;
+    color: var(--text-color);
+}
+
+.add{
+    position: absolute;
+    top: 7rem;
+    left: 75rem;
+}
+
+.add button{
+    width: 7rem;
+    height: 2rem;
+    border-radius: 1rem;
+    border: var(--border-color);
+    box-shadow: var(--shadow-color) 2px 2px;
+    background-color: var(--primary-color);
+}
+
+.add h4{
+    position: relative;
+    top: -1.22rem;
+    left: .4rem;
+}
+.add svg{
+    position: relative;
+    top: .13rem;
+    left: -2.3rem;
+}
+
+.add button:hover{
+    cursor: pointer;
+    background-color: var(--hover-color);
+}
+
+.add:focus{
+    outline: none;
+}
+
+.popupBox{
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+    justify-content: center;
+    align-items: center;
+}
+
+.popup{
+    background: var(--body-color);
+    border-radius: 12px;
+    overflow: hidden;
+    width: 80%;
+    max-width: 800px;
+    height: 80%;
+    box-shadow: var(--shadow-color) 3px 3px;
+    position: relative;
+}
+
+iframe{
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+.close-btn{
+    position: absolute;
+    top: 8px;
+    right: 12px;
+    font-size: 22px;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
