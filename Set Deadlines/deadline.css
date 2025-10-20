@@ -56,7 +56,7 @@ html:focus{
 .ls{
     position: relative;
     top: -45px;
-    left: 77rem; 
+    left: 75rem; 
     display: inline-block;
     line-height: 1;
     margin: 0;
@@ -73,15 +73,10 @@ html:focus{
     outline:none
 }   
 
-.ls h3:hover{
-    cursor: pointer;
-    background-color: var(--hover-color);
-}
-
 .si{
     position: relative;
-    top: -45px;
-    left: 77.5rem; 
+    top: -46px;
+    left: 75.5rem; 
     display: inline-block;
     line-height: 1;
     margin: 0;
@@ -93,26 +88,8 @@ html:focus{
     color: var(--text-color);
 }
 
-.si h3:hover{
-    cursor: pointer;
-    background-color: var(--hover-color);
-}
-
 .si :focus{
     outline:none
-}
-
-.name{
-    position: relative;
-    top: 110px;
-    text-align: center;
-    font-size: 350%;
-}
-
-.so{
-    position: relative;
-    top: 110px;
-    text-align: center;
 }
 
 .sidebar{
