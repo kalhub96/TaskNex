@@ -53,12 +53,6 @@ html:focus{
     cursor: pointer;
 }
 
-.pn h6{
-    position: relative;
-    top: -1.8rem;
-    left: 7rem;
-}
-
 .ls{
     position: relative;
     top: -45px;
@@ -248,3 +242,140 @@ iframe{
     border: none;
     cursor: pointer;
 }
+
+  /* Grid layout */
+  #taskContainer {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 20px;
+  }
+
+  /* Each task card */
+  .taskCard {
+    background: #ffffff;
+    padding: 16px;
+    border-radius: 18px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+    position: relative;
+    border: 1px solid rgba(0, 0, 0, 0.04);
+  }
+
+  /* Hover effect: lift + shadow glow */
+  .taskCard:hover {
+    transform: translateY(-6px) scale(1.02);
+    box-shadow: 0 8px 20px rgba(37, 99, 235, 0.15);
+    border-color: rgba(37, 99, 235, 0.2);
+  }
+
+  .fav {
+    position: absolute;
+    top: 10px;
+    right: 14px;
+    font-size: 20px;
+    color: gold;
+  }
+
+  .taskCard h3 {
+    margin: 0 0 6px;
+    font-size: 18px;
+    color: #111827;
+  }
+
+  .taskCard p {
+    font-size: 14px;
+    color: #4b5563;
+  }
+
+  small {
+    display: block;
+    margin-top: 8px;
+    color: #6b7280;
+  }
+
+  button.favBtn,
+  button.delBtn {
+    border: none;
+    cursor: pointer;
+    padding: 6px 10px;
+    border-radius: 8px;
+    font-size: 13px;
+    transition: all 0.3s ease;
+  }
+
+  button.favBtn {
+    background: #facc15;
+    color: #111;
+  }
+
+  button.favBtn:hover {
+    background: #eab308;
+  }
+
+  button.delBtn {
+    background: #ef4444;
+    color: white;
+  }
+
+  button.delBtn:hover {
+    background: #dc2626;
+  }
+
+  /* Popup overlay styling */
+  #popupOverlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.55);
+    backdrop-filter: blur(4px);
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+  }
+
+  .popup {
+    width: 520px;
+    max-width: 95%;
+    background: #ffffff;
+    padding: 16px;
+    border-radius: 16px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    animation: popupIn 0.3s ease;
+  }
+
+  @keyframes popupIn {
+    from {
+      opacity: 0;
+      transform: scale(0.95);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  iframe {
+    width: 100%;
+    height: 330px;
+    border: none;
+    border-radius: 12px;
+  }
+
+  #closeBtn {
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    color: #374151;
+    float: right;
+  }
+
+  #closeBtn:hover {
+    color: #ef4444;
+  }
+
+  .TM h2{
+    color: var(--text-color);
+    margin-bottom: 20px;
+    text-align: center;
+  }
