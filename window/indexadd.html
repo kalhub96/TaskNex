@@ -7,7 +7,15 @@
     <title>Task Card</title>
 </head>
 <body>
-    <div class="task-contaner" id="taskcontaner"></div>
+    <h3>Add Task</h3>
+
+  <!-- Use type="submit" and listen on the form, or type="button" with click handler -->
+  <form id="taskForm">
+    <input id="title" placeholder="Task title" required />
+    <textarea id="description" placeholder="Task description" required></textarea>
+    <input id="deadline" type="date" />
+    <button type="submit" id="addBtn">Add Task</button>
+  </form>    
     <script src="Taskcard.js"></script>
 </body>
 </html>

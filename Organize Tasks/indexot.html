@@ -13,7 +13,6 @@
         <!--name-->
         <div class="pn">
             <button class="w3-button pn w3-xlarge" onclick="w3_open()"><h5>TaskNex</h5></button>
-            <h6>(Organize task)</h6>
         </div>
         <!--login&sginup-->
         <div class="ls">
@@ -61,15 +60,19 @@
                 <path d="m16 17 5-5-5-5"/><path d="M21 12H9"/><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/></svg><li>Logout</li></button></a>
         </ul>
     </div>
+    <div class="TM">
+        <h2>Task Manager</h2>
+    </div>
     <div class="add">
         <button id="openBtn"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus-icon lucide-plus">
             <path d="M5 12h14"/><path d="M12 5v14"/></svg><h4>Add task</h4></button>
     </div>
+    <div id="taskContainer"></div>
     <!--add tasks-->
     <div class="popupBox" id="popupOverlay" aria-hidden="true">
         <div class="popup" role="dialog" aria-modal="true">
             <button class="close-btn" id="closeBtn" type="button" aria-label="close">&times;</button>
-            <iframe id="popupIframe"  src="/window/indexadd.html"></iframe>
+            <iframe id="popupIframe"  src="../window/indexadd.html"></iframe>
         </div>
     </div>
     <script src="OT.js"></script>

@@ -1,22 +1,26 @@
-window.addEventListener("massage", (event) => {
-    const tasks = event.data.tasks;
-    if (!tasks) return;
+console.log('indexadd: script loaded');
 
-    const container = 
-    document.getElementById("taskContainer");
-    container.innerHTML="";//clear before adding new
+const form = document.getElementById('taskForm');
+form.addEventListener('submit', (e) => {
+  e.preventDefault();
+  const title = document.getElementById('title').value.trim();
+  const description = document.getElementById('description').value.trim();
+  const deadline = document.getElementById('deadline').value;
 
-    tasks.forEach((task, index) => {
-        const card = 
-        document.createElement("div");
-        card.classList.add("task-card");
-        card.innerHTML = `
-        <div class="task-title">${task.title}</div>
-        <div class="task-desc">${task.description || "No description"}</div>
-        <div class="task-actions">
-            <button class="btn done">Done</button>
-            <button class="btn delete">Delete</button>
-        </div>`;
-        container.appendChild(card);
-    });
+  if (!title || !description) {
+    alert('Please fill in title and description');
+    return;
+  }
+
+  const taskData = { title, description, deadline, favorite: false };
+
+  // debug log so you can see this action in the iframe console
+  console.log('indexadd: sending task to parent', taskData);
+
+  // Send message to parent window (use '*' during dev; set origin for prod)
+  window.parent.postMessage({ type: 'newTask', task: taskData }, '*');
+
+
+  // reset form
+  form.reset();
 });
