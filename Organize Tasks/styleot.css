@@ -22,11 +22,22 @@ html:focus{
     outline:none
 }
 
+header{
+  display: flex;
+}
+
 .had{
     position: relative;
     top: .7rem;
     margin-bottom: .1rem;
 }
+
+@media (max-width: 600px) {
+    .had{
+        padding: 6px 10px;
+        font-size: 14px;
+    }
+  }
 
 .pi{
     position: relative;
@@ -40,8 +51,8 @@ html:focus{
 .pn{
     font-family:Verdana;
     position: relative;
-    top: -13px;
-    left: 2.1rem; 
+    top: 3.5px;
+    left: .7rem; 
 }
 
 .pn button{
@@ -55,8 +66,8 @@ html:focus{
 
 .ls{
     position: relative;
-    top: -45px;
-    left: 77rem; 
+    top: 7px;
+    left: 70rem; 
     display: inline-block;
     line-height: 1;
     margin: 0;
@@ -80,8 +91,8 @@ html:focus{
 
 .si{
     position: relative;
-    top: -46px;
-    left: 77.5rem; 
+    top: 7px;
+    left: 70.5rem; 
     display: inline-block;
     line-height: 1;
     margin: 0;
@@ -166,8 +177,9 @@ html:focus{
 }
 
 .add{
-    position: absolute;
-    top: 7rem;
+  display: inline-block;
+    position: relative;
+    top: .2rem;
     left: 75rem;
 }
 
@@ -373,3 +385,32 @@ iframe{
     margin-bottom: 20px;
     text-align: center;
   }
+
+.taskCard{ 
+  background: #fff;
+  margin: 10px 0;
+  padding: 12px;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  display: block;
+}
+
+.taskCard .fav{
+  font-size: 18px;
+  float: right;
+}
+
+.progress{
+  width: 100%;
+  height: 6px;
+  background: #eee;
+  border-radius: 4px;
+  margin-top: 8px;
+  overflow: hidden;
+}
+
+.progress-fill{
+  height: 100%;
+  width: 0;
+  transition: width 0.4s ease-in-out;
+}
