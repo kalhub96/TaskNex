@@ -153,12 +153,6 @@ html:focus{
     height: 2rem;
     margin-bottom: 10px;
     border-radius: .5rem;
-    background-color: var(--primary-color);
-}
-
-.sidebar .ot:hover, .sidebar .st:hover, .sidebar .tp:hover, .sidebar .mp:hover, .sidebar .sr:hover, .sidebar .ca:hover, .sidebar .pw:hover, .sidebar .cwt:hover, .sidebar .gt:hover, .sidebar .lo:hover{
-    cursor: pointer;
-    background-color: var(--hover-color);
 }
 
 .sidebar ul{
