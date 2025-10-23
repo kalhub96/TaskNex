@@ -225,3 +225,88 @@ window.addEventListener('message', (event) => {
 // If your current "Add" code adds tasks directly (not through iframe), make sure to:
 // - push createdAt = new Date().toISOString() into the new task object
 // - call saveTasks() and renderTasks() after adding
+
+// === Favorite and Progress System ===
+
+// Load tasks & favorites
+let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+
+// DOM
+const favCount = document.getElementById("favCount");
+const favoriteList = document.getElementById("favoriteList");
+const toggleFavorites = document.getElementById("toggleFavorites");
+
+// Display all tasks
+function displayTasks() {
+  taskContainer.innerHTML = "";
+  tasks.forEach((task, index) => {
+    const card = document.createElement("div");
+    card.classList.add("taskCard");
+    card.innerHTML = `
+      <h3>${task.title}</h3>
+      <p>${task.description}</p>
+      <small>Progress:</small>
+      <div class="progress">
+        <div class="progress-fill" style="background:${task.color || "#1fe64a"}; width:${task.progress || 0}%;"></div>
+      </div>
+      <div class="task-actions">
+        <button class="favBtn">${favorites.some(f => f.id === task.id) ? "★" : "☆"}</button>
+        <button class="delBtn">🗑</button>
+      </div>
+    `;
+
+    // Favorite button
+    card.querySelector(".favBtn").addEventListener("click", () => toggleFavorite(task));
+
+    // Delete button
+    card.querySelector(".delBtn").addEventListener("click", () => deleteTask(index));
+
+    // Append
+    taskContainer.appendChild(card);
+  });
+}
+
+// Favorite toggle
+function toggleFavorite(task) {
+  const found = favorites.find(f => f.id === task.id);
+  if (found) {
+    favorites = favorites.filter(f => f.id !== task.id);
+  } else {
+    favorites.push(task);
+  }
+  localStorage.setItem("favorites", JSON.stringify(favorites));
+  updateFavoriteSection();
+  displayTasks();
+}
+
+// Delete task
+function deleteTask(index) {
+  const task = tasks[index];
+  tasks.splice(index, 1);
+  favorites = favorites.filter(f => f.id !== task.id);
+  localStorage.setItem("tasks", JSON.stringify(tasks));
+  localStorage.setItem("favorites", JSON.stringify(favorites));
+  displayTasks();
+  updateFavoriteSection();
+}
+
+// Toggle favorite dropdown
+toggleFavorites.addEventListener("click", () => {
+  favoriteList.style.display = favoriteList.style.display === "block" ? "none" : "block";
+});
+
+// Update favorite list
+function updateFavoriteSection() {
+  favCount.textContent = favorites.length;
+  favoriteList.innerHTML = "";
+  favorites.forEach(fav => {
+    const div = document.createElement("div");
+    div.classList.add("favTask");
+    div.textContent = fav.title;
+    favoriteList.appendChild(div);
+  });
+}
+
+// Initialize
+displayTasks();
+updateFavoriteSection();

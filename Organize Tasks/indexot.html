@@ -63,9 +63,33 @@
     <div class="TM">
         <h2>Task Manager</h2>
     </div>
+    <div class="search">
+        <input type="text" id="searchInput" placeholder="Search tasks...">
+    </div>
+    <div class="filter">
+        <label for="filterSelect">Filter by:</label>
+        <select id="filterSelect">
+            <option value="all">All</option>
+            <option value="completed">Completed</option>
+            <option value="pending">Pending</option>
+        </select>
+    </div>
+    <div class="sort">
+        <label for="sortSelect">Sort by:</label>
+        <select id="sortSelect">
+            <option value="dateAsc">Date Ascending</option>
+            <option value="dateDesc">Date Descending</option>
+            <option value="priorityAsc">Priority Ascending</option>
+            <option value="priorityDesc">Priority Descending</option>
+        </select>
+    </div>
     <div class="add">
         <button id="openBtn"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus-icon lucide-plus">
             <path d="M5 12h14"/><path d="M12 5v14"/></svg><h4>Add task</h4></button>
+    </div>
+    <div class="favorite-selection" id="favoriteSelection">
+        <button id="toggleFavorites">★ Favorite(<span id="favCount">0</span>)</button>
+        <div id="favoriteList" class="favorite-list"></div>
     </div>
     <div id="taskContainer" class="task-container"></div>
     <!--add tasks-->
