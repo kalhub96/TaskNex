@@ -1,32 +1,26 @@
+// --- Element references ---
 const openBtn = document.getElementById('openBtn');
-const popupBox = document.getElementById('popupOverlay'); // your overlay id
+const popupBox = document.getElementById('popupOverlay');
 const closeBtn = document.getElementById('closeBtn');
 const iframe = document.getElementById('popupIframe');
 const taskContainer = document.getElementById('taskContainer');
-const sidebar = document.getElementById('mySidebar'); // for w3_open / w3_close
+const sidebar = document.getElementById('mySidebar');
 
-// Safety check for required elements
-if (!openBtn || !popupBox || !iframe || !closeBtn || !taskContainer) {
-  console.error('One or more required elements not found:', {
-    openBtn, popupBox, iframe, closeBtn, taskContainer
-  });
-} else {
-  console.log('All required elements found.');
-}
+const favCount = document.getElementById("favCount");
+const favoriteList = document.getElementById("favoriteList");
+const toggleFavorites = document.getElementById("toggleFavorites");
 
-// --- Popup (iframe) handling ---
+// --- Popup handling ---
 function openPopup(srcPath = '/window/indexadd.html') {
   iframe.src = srcPath;
   popupBox.style.display = 'flex';
   popupBox.setAttribute('aria-hidden', 'false');
 }
-
 function closePopup() {
   popupBox.style.display = 'none';
   iframe.src = '';
   popupBox.setAttribute('aria-hidden', 'true');
 }
-
 openBtn && openBtn.addEventListener('click', () => openPopup());
 closeBtn && closeBtn.addEventListener('click', closePopup);
 popupBox && popupBox.addEventListener('click', (e) => {
@@ -36,277 +30,155 @@ document.addEventListener('keydown', (e) => {
   if (e.key === 'Escape' && popupBox.style.display === 'flex') closePopup();
 });
 
-// --- Sidebar helpers (as in your file) ---
-function w3_open() {
-  if (sidebar) sidebar.style.display = 'block';
-}
-function w3_close() {
-  if (sidebar) sidebar.style.display = 'none';
-}
+// --- Sidebar ---
+function w3_open() { if (sidebar) sidebar.style.display = 'block'; }
+function w3_close() { if (sidebar) sidebar.style.display = 'none'; }
 
-// --- Tasks (localStorage) ---
-// Use safe parse with fallback
-let tasks;
-try {
-  tasks = JSON.parse(localStorage.getItem('tasks') || '[]');
-  if (!Array.isArray(tasks)) tasks = [];
-} catch (err) {
-  console.warn('Failed parsing tasks from localStorage, resetting to []', err);
-  tasks = [];
-}
+// --- Load tasks and favorites ---
+let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
 
-// Helper: save tasks
+// Ensure each task has a unique id
+function ensureTaskIds() {
+  tasks.forEach((t, i) => {
+    if (!t.id) t.id = Date.now() + i + Math.random().toString(16).slice(2);
+  });
+  localStorage.setItem("tasks", JSON.stringify(tasks));
+}
+ensureTaskIds();
+
+// --- Save tasks ---
 function saveTasks() {
-  localStorage.setItem('tasks', JSON.stringify(tasks));
+  localStorage.setItem("tasks", JSON.stringify(tasks));
 }
 
-// Helper: clamp
-function clamp(n, min, max) { return Math.max(min, Math.min(max, n)); }
-
-// --- Progress calculation ---
-// percent = elapsed / total * 100 ; createdAt -> deadline
+// --- Calculate progress ---
 function calculateProgressPercent(createdAtStr, deadlineStr) {
   try {
-    const created = createdAtStr ? new Date(createdAtStr) : new Date(); // fallback to now
+    const created = createdAtStr ? new Date(createdAtStr) : new Date();
     const end = new Date(deadlineStr);
-    // normalize times to start of day for day-based progress
-    const start = new Date(created.getFullYear(), created.getMonth(), created.getDate());
-    const finish = new Date(end.getFullYear(), end.getMonth(), end.getDate());
     const now = new Date();
-    const nowDay = new Date(now.getFullYear(), now.getMonth(), now.getDate());
-
-    const totalMs = finish - start;
-    const elapsedMs = nowDay - start;
-
-    // if deadline already passed, percent = 100
-    if (totalMs <= 0) {
-      return 100;
-    }
-
-    const raw = (elapsedMs / totalMs) * 100;
-    const percent = clamp(Math.round(raw), 0, 100);
-    return percent;
-  } catch (err) {
-    console.warn('Progress calc error', err);
+    const totalMs = end - created;
+    const elapsedMs = now - created;
+    if (totalMs <= 0) return 100;
+    return Math.min(100, Math.max(0, Math.round((elapsedMs / totalMs) * 100)));
+  } catch {
     return 0;
   }
 }
 
-// --- Render tasks (main) ---
+// --- Render tasks ---
 function renderTasks() {
-  taskContainer.innerHTML = '';
-
-  tasks.forEach((t, i) => {
-    // ensure minimal task shape
-    if (!t.title) t.title = 'Untitled Task';
-    // if task has no createdAt, set it now (persist)
-    if (!t.createdAt) {
-      t.createdAt = new Date().toISOString();
-      saveTasks();
-    }
-
-    // card
-    const el = document.createElement('div');
-    el.className = 'taskCard';
-
-    // favorite star (visual)
-    const favMark = document.createElement('div');
-    favMark.className = 'fav';
-    favMark.textContent = t.favorite ? '★' : '☆';
-
-    // title / description / deadline
-    const h3 = document.createElement('h3');
-    h3.textContent = t.title;
-
-    const p = document.createElement('p');
-    p.textContent = t.description || '';
-
-    const small = document.createElement('small');
-    small.textContent = `Deadline: ${t.deadline || '—'}`;
-
-    // buttons container
-    const controls = document.createElement('div');
-    controls.style.marginTop = '8px';
-
-    const favBtn = document.createElement('button');
-    favBtn.className = 'favBtn';
-    favBtn.textContent = t.favorite ? 'Unfavorite' : 'Favorite';
-
-    const delBtn = document.createElement('button');
-    delBtn.className = 'delBtn';
-    delBtn.textContent = 'Delete';
-
-    controls.appendChild(favBtn);
-    controls.appendChild(delBtn);
-
-    // assemble card content
-    el.appendChild(favMark);
-    el.appendChild(h3);
-    el.appendChild(p);
-    el.appendChild(small);
-
-    // Add progress bar if deadline exists
-    if (t.deadline) {
-      const progressContainer = document.createElement('div');
-      progressContainer.className = 'progress';
-
-      const progressFill = document.createElement('div');
-      progressFill.className = 'progress-fill';
-
-      const percent = calculateProgressPercent(t.createdAt, t.deadline);
-      progressFill.style.width = `${percent}%`;
-
-      // color: green -> amber -> red as deadline nears (based on percent)
-      // Here we interpret percent as elapsed fraction. If percent >= 100 -> overdue/completed time window.
-      if (percent < 50) progressFill.style.background = '#4CAF50';
-      else if (percent < 80) progressFill.style.background = '#FFC107';
-      else progressFill.style.background = '#F44336';
-
-      progressContainer.appendChild(progressFill);
-      el.appendChild(progressContainer);
-    }
-
-    el.appendChild(controls);
-
-    // favorite toggle
-    favBtn.addEventListener('click', () => {
-      tasks[i].favorite = !tasks[i].favorite;
-      saveTasks();
-      renderTasks();
-    });
-
-    // delete
-    delBtn.addEventListener('click', () => {
-      tasks.splice(i, 1);
-      saveTasks();
-      renderTasks();
-    });
-
-    taskContainer.appendChild(el);
-  });
-}
-
-// initial render
-document.addEventListener('DOMContentLoaded', renderTasks);
-
-// --- Listen for messages from iframe add form ---
-// The iframe should postMessage({ type:'newTask', task: { title, description, deadline } }, '*')
-window.addEventListener('message', (event) => {
-  // Optional: you can check event.origin if security needed
-  const data = event.data;
-  if (!data || typeof data !== 'object') return;
-
-  console.log('message received', data);
-
-  if (data.type === 'newTask' && data.task) {
-    const incoming = data.task;
-    // ensure required fields on incoming
-    const newTask = {
-      title: incoming.title || 'Untitled Task',
-      description: incoming.description || '',
-      deadline: incoming.deadline || '',
-      favorite: !!incoming.favorite,
-      createdAt: new Date().toISOString()
-    };
-    tasks.push(newTask);
-    saveTasks();
-    renderTasks();
-    // close popup if available
-    closePopup();
-    return;
-  }
-
-  if (data.type === 'closePopup') {
-    closePopup();
-    return;
-  }
-});
-
-// If your current "Add" code adds tasks directly (not through iframe), make sure to:
-// - push createdAt = new Date().toISOString() into the new task object
-// - call saveTasks() and renderTasks() after adding
-
-// === Favorite and Progress System ===
-
-// Load tasks & favorites
-let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
-
-// DOM
-const favCount = document.getElementById("favCount");
-const favoriteList = document.getElementById("favoriteList");
-const toggleFavorites = document.getElementById("toggleFavorites");
-
-// Display all tasks
-function displayTasks() {
   taskContainer.innerHTML = "";
+
   tasks.forEach((task, index) => {
+    const isFav = favorites.some(f => f.id === task.id);
+    const progress = calculateProgressPercent(task.createdAt, task.deadline);
+
     const card = document.createElement("div");
     card.classList.add("taskCard");
+
     card.innerHTML = `
-      <h3>${task.title}</h3>
-      <p>${task.description}</p>
-      <small>Progress:</small>
+      <h3>${task.title || "Untitled Task"}</h3>
+      <p>${task.description || ""}</p>
+      <small>Deadline: ${task.deadline || "—"}</small>
       <div class="progress">
-        <div class="progress-fill" style="background:${task.color || "#1fe64a"}; width:${task.progress || 0}%;"></div>
+        <div class="progress-fill" style="width:${progress}%; background:${
+          progress < 50 ? "#4CAF50" : progress < 80 ? "#FFC107" : "#F44336"
+        }"></div>
       </div>
       <div class="task-actions">
-        <button class="favBtn">${favorites.some(f => f.id === task.id) ? "★" : "☆"}</button>
+        <button class="favBtn">${isFav ? "★" : "☆"}</button>
         <button class="delBtn">🗑</button>
       </div>
     `;
 
-    // Favorite button
-    card.querySelector(".favBtn").addEventListener("click", () => toggleFavorite(task));
+    // Favorite toggle
+    card.querySelector(".favBtn").addEventListener("click", () => toggleFavorite(task.id));
 
-    // Delete button
-    card.querySelector(".delBtn").addEventListener("click", () => deleteTask(index));
+    // Delete task
+    card.querySelector(".delBtn").addEventListener("click", () => deleteTask(task.id));
 
-    // Append
     taskContainer.appendChild(card);
   });
 }
 
-// Favorite toggle
-function toggleFavorite(task) {
-  const found = favorites.find(f => f.id === task.id);
-  if (found) {
-    favorites = favorites.filter(f => f.id !== task.id);
+// --- Favorite handling ---
+function toggleFavorite(taskId) {
+  const task = tasks.find(t => t.id === taskId);
+  if (!task) return;
+
+  const alreadyFav = favorites.find(f => f.id === taskId);
+  if (alreadyFav) {
+    favorites = favorites.filter(f => f.id !== taskId);
   } else {
     favorites.push(task);
   }
+
   localStorage.setItem("favorites", JSON.stringify(favorites));
   updateFavoriteSection();
-  displayTasks();
+  renderTasks();
 }
 
-// Delete task
-function deleteTask(index) {
-  const task = tasks[index];
-  tasks.splice(index, 1);
-  favorites = favorites.filter(f => f.id !== task.id);
-  localStorage.setItem("tasks", JSON.stringify(tasks));
+// --- Delete handling ---
+function deleteTask(taskId) {
+  tasks = tasks.filter(t => t.id !== taskId);
+  favorites = favorites.filter(f => f.id !== taskId);
+  saveTasks();
   localStorage.setItem("favorites", JSON.stringify(favorites));
-  displayTasks();
+  renderTasks();
   updateFavoriteSection();
 }
 
-// Toggle favorite dropdown
-toggleFavorites.addEventListener("click", () => {
-  favoriteList.style.display = favoriteList.style.display === "block" ? "none" : "block";
-});
-
-// Update favorite list
+// --- Update favorite section ---
 function updateFavoriteSection() {
   favCount.textContent = favorites.length;
   favoriteList.innerHTML = "";
+
+  if (favorites.length === 0) {
+    favoriteList.innerHTML = "<p style='font-size:13px;color:#888'>No favorites yet</p>";
+    return;
+  }
+
   favorites.forEach(fav => {
     const div = document.createElement("div");
     div.classList.add("favTask");
     div.textContent = fav.title;
+    div.addEventListener("click", () => {
+      alert(`Task: ${fav.title}\nDeadline: ${fav.deadline || "—"}`);
+    });
     favoriteList.appendChild(div);
   });
 }
 
-// Initialize
-displayTasks();
-updateFavoriteSection();
+// --- Dropdown toggle ---
+toggleFavorites.addEventListener("click", () => {
+  favoriteList.style.display = favoriteList.style.display === "block" ? "none" : "block";
+});
+
+// --- Message listener from iframe ---
+window.addEventListener("message", (event) => {
+  const data = event.data;
+  if (!data || typeof data !== "object") return;
+
+  if (data.type === "newTask" && data.task) {
+    const newTask = {
+      id: Date.now() + Math.random().toString(16).slice(2),
+      title: data.task.title || "Untitled Task",
+      description: data.task.description || "",
+      deadline: data.task.deadline || "",
+      createdAt: new Date().toISOString(),
+    };
+    tasks.push(newTask);
+    saveTasks();
+    renderTasks();
+    closePopup();
+  }
+  if (data.type === "closePopup") closePopup();
+});
+
+// --- Init ---
+document.addEventListener("DOMContentLoaded", () => {
+  renderTasks();
+  updateFavoriteSection();
+});
