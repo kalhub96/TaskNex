@@ -12,26 +12,28 @@ const toggleFavorites = document.getElementById("toggleFavorites");
 
 // --- Popup handling ---
 function openPopup(srcPath = '/window/indexadd.html') {
-  iframe.src = srcPath;
-  popupBox.style.display = 'flex';
-  popupBox.setAttribute('aria-hidden', 'false');
+    iframe.src = srcPath;
+    popupBox.style.display = 'flex';
+    popupBox.setAttribute('aria-hidden', 'false');
 }
+
 function closePopup() {
-  popupBox.style.display = 'none';
-  iframe.src = '';
-  popupBox.setAttribute('aria-hidden', 'true');
+    popupBox.style.display = 'none';
+    iframe.src = '';
+    popupBox.setAttribute('aria-hidden', 'true');
 }
 openBtn && openBtn.addEventListener('click', () => openPopup());
 closeBtn && closeBtn.addEventListener('click', closePopup);
 popupBox && popupBox.addEventListener('click', (e) => {
-  if (e.target === popupBox) closePopup();
+    if (e.target === popupBox) closePopup();
 });
 document.addEventListener('keydown', (e) => {
-  if (e.key === 'Escape' && popupBox.style.display === 'flex') closePopup();
+    if (e.key === 'Escape' && popupBox.style.display === 'flex') closePopup();
 });
 
 // --- Sidebar ---
 function w3_open() { if (sidebar) sidebar.style.display = 'block'; }
+
 function w3_close() { if (sidebar) sidebar.style.display = 'none'; }
 
 // --- Load tasks and favorites ---
@@ -40,45 +42,45 @@ let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
 
 // Ensure each task has a unique id
 function ensureTaskIds() {
-  tasks.forEach((t, i) => {
-    if (!t.id) t.id = Date.now() + i + Math.random().toString(16).slice(2);
-  });
-  localStorage.setItem("tasks", JSON.stringify(tasks));
+    tasks.forEach((t, i) => {
+        if (!t.id) t.id = Date.now() + i + Math.random().toString(16).slice(2);
+    });
+    localStorage.setItem("tasks", JSON.stringify(tasks));
 }
 ensureTaskIds();
 
 // --- Save tasks ---
 function saveTasks() {
-  localStorage.setItem("tasks", JSON.stringify(tasks));
+    localStorage.setItem("tasks", JSON.stringify(tasks));
 }
 
 // --- Calculate progress ---
 function calculateProgressPercent(createdAtStr, deadlineStr) {
-  try {
-    const created = createdAtStr ? new Date(createdAtStr) : new Date();
-    const end = new Date(deadlineStr);
-    const now = new Date();
-    const totalMs = end - created;
-    const elapsedMs = now - created;
-    if (totalMs <= 0) return 100;
-    return Math.min(100, Math.max(0, Math.round((elapsedMs / totalMs) * 100)));
-  } catch {
-    return 0;
-  }
+    try {
+        const created = createdAtStr ? new Date(createdAtStr) : new Date();
+        const end = new Date(deadlineStr);
+        const now = new Date();
+        const totalMs = end - created;
+        const elapsedMs = now - created;
+        if (totalMs <= 0) return 100;
+        return Math.min(100, Math.max(0, Math.round((elapsedMs / totalMs) * 100)));
+    } catch {
+        return 0;
+    }
 }
 
 // --- Render tasks ---
 function renderTasks() {
-  taskContainer.innerHTML = "";
+    taskContainer.innerHTML = "";
 
-  tasks.forEach((task, index) => {
-    const isFav = favorites.some(f => f.id === task.id);
-    const progress = calculateProgressPercent(task.createdAt, task.deadline);
+    tasks.forEach((task, index) => {
+        const isFav = favorites.some(f => f.id === task.id);
+        const progress = calculateProgressPercent(task.createdAt, task.deadline);
 
-    const card = document.createElement("div");
-    card.classList.add("taskCard");
+        const card = document.createElement("div");
+        card.classList.add("taskCard");
 
-    card.innerHTML = `
+        card.innerHTML = `
       <h3>${task.title || "Untitled Task"}</h3>
       <p>${task.description || ""}</p>
       <small>Deadline: ${task.deadline || "—"}</small>
@@ -93,92 +95,109 @@ function renderTasks() {
       </div>
     `;
 
-    // Favorite toggle
-    card.querySelector(".favBtn").addEventListener("click", () => toggleFavorite(task.id));
+        // Favorite toggle
+        card.querySelector(".favBtn").addEventListener("click", () => toggleFavorite(task.id));
 
-    // Delete task
-    card.querySelector(".delBtn").addEventListener("click", () => deleteTask(task.id));
+        // Delete task
+        card.querySelector(".delBtn").addEventListener("click", () => deleteTask(task.id));
 
-    taskContainer.appendChild(card);
-  });
+        taskContainer.appendChild(card);
+    });
 }
 
 // --- Favorite handling ---
 function toggleFavorite(taskId) {
-  const task = tasks.find(t => t.id === taskId);
-  if (!task) return;
+    const task = tasks.find(t => t.id === taskId);
+    if (!task) return;
 
-  const alreadyFav = favorites.find(f => f.id === taskId);
-  if (alreadyFav) {
-    favorites = favorites.filter(f => f.id !== taskId);
-  } else {
-    favorites.push(task);
-  }
+    const alreadyFav = favorites.find(f => f.id === taskId);
+    if (alreadyFav) {
+        favorites = favorites.filter(f => f.id !== taskId);
+    } else {
+        favorites.push(task);
+    }
 
-  localStorage.setItem("favorites", JSON.stringify(favorites));
-  updateFavoriteSection();
-  renderTasks();
+    localStorage.setItem("favorites", JSON.stringify(favorites));
+    updateFavoriteSection();
+    renderTasks();
 }
 
 // --- Delete handling ---
 function deleteTask(taskId) {
-  tasks = tasks.filter(t => t.id !== taskId);
-  favorites = favorites.filter(f => f.id !== taskId);
-  saveTasks();
-  localStorage.setItem("favorites", JSON.stringify(favorites));
-  renderTasks();
-  updateFavoriteSection();
+    tasks = tasks.filter(t => t.id !== taskId);
+    favorites = favorites.filter(f => f.id !== taskId);
+    saveTasks();
+    localStorage.setItem("favorites", JSON.stringify(favorites));
+    renderTasks();
+    updateFavoriteSection();
 }
 
 // --- Update favorite section ---
 function updateFavoriteSection() {
-  favCount.textContent = favorites.length;
-  favoriteList.innerHTML = "";
+    favCount.textContent = favorites.length;
+    favoriteList.innerHTML = "";
 
-  if (favorites.length === 0) {
-    favoriteList.innerHTML = "<p style='font-size:13px;color:#888'>No favorites yet</p>";
-    return;
-  }
+    if (favorites.length === 0) {
+        favoriteList.innerHTML = "<p style='font-size:13px;color:#888'>No favorites yet</p>";
+        return;
+    }
 
-  favorites.forEach(fav => {
-    const div = document.createElement("div");
-    div.classList.add("favTask");
-    div.textContent = fav.title;
-    div.addEventListener("click", () => {
-      alert(`Task: ${fav.title}\nDeadline: ${fav.deadline || "—"}`);
+    favorites.forEach(fav => {
+        const div = document.createElement("div");
+        div.classList.add("favTask");
+        div.textContent = fav.title;
+        div.addEventListener("click", () => {
+            alert(`Task: ${fav.title}\nDeadline: ${fav.deadline || "—"}`);
+        });
+        favoriteList.appendChild(div);
     });
-    favoriteList.appendChild(div);
-  });
 }
 
 // --- Dropdown toggle ---
 toggleFavorites.addEventListener("click", () => {
-  favoriteList.style.display = favoriteList.style.display === "block" ? "none" : "block";
+    favoriteList.style.display = favoriteList.style.display === "block" ? "none" : "block";
 });
 
 // --- Message listener from iframe ---
 window.addEventListener("message", (event) => {
-  const data = event.data;
-  if (!data || typeof data !== "object") return;
+    const data = event.data;
+    if (!data || typeof data !== "object") return;
 
-  if (data.type === "newTask" && data.task) {
-    const newTask = {
-      id: Date.now() + Math.random().toString(16).slice(2),
-      title: data.task.title || "Untitled Task",
-      description: data.task.description || "",
-      deadline: data.task.deadline || "",
-      createdAt: new Date().toISOString(),
-    };
-    tasks.push(newTask);
-    saveTasks();
-    renderTasks();
-    closePopup();
-  }
-  if (data.type === "closePopup") closePopup();
+    if (data.type === "newTask" && data.task) {
+        const newTask = {
+            id: Date.now() + Math.random().toString(16).slice(2),
+            title: data.task.title || "Untitled Task",
+            description: data.task.description || "",
+            deadline: data.task.deadline || "",
+            createdAt: new Date().toISOString(),
+        };
+        tasks.push(newTask);
+        saveTasks();
+        renderTasks();
+        closePopup();
+    }
+    if (data.type === "closePopup") closePopup();
 });
 
 // --- Init ---
 document.addEventListener("DOMContentLoaded", () => {
-  renderTasks();
-  updateFavoriteSection();
+    renderTasks();
+    updateFavoriteSection();
 });
+
+// --- Search functionality ---
+const searchInput = document.getElementById('searchInput');
+searchInput.addEventListener('keyup', function(e) {
+    const searchTerm = e.target.value.toLowerCase();
+    const taskCards = document.querySelectorAll('.taskCard');
+    taskCards.forEach(card => {
+        const title = card.querySelector('h3').textContent.toLowerCase();
+        const description = card.querySelector('p').textContent.toLowerCase();
+        if (title.includes(searchTerm) || description.includes(searchTerm)) {
+            card.style.display = '';
+        } else {
+            card.style.display = 'none';
+        }
+    });
+});
+constfilterSelect = document.querySelectorAll('.filter select');

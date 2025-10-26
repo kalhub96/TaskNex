@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styleot.css">
     <title>TASKNEX</title>
 </head>
+
 <body>
     <header class="had">
         <!--for profile image-->
@@ -16,10 +18,14 @@
         </div>
         <!--login&sginup-->
         <div class="ls">
-            <a href="/Login/indexlog.html"><h3>login</h3></a>
+            <a href="/Login/indexlog.html">
+                <h3>login</h3>
+            </a>
         </div>
         <div class="si">
-            <a href="/signup/indexsign.html"><h3>singup</h3></a>
+            <a href="/signup/indexsign.html">
+                <h3>singup</h3>
+            </a>
         </div>
     </header>
     <!--this control the sidebar elements-->
@@ -64,16 +70,19 @@
         <h2>Task Manager</h2>
     </div>
     <div class="search">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+  <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
+</svg>
         <input type="text" id="searchInput" placeholder="Search tasks...">
     </div>
     <div class="filter">
         <label for="filterSelect"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-funnel-fill" viewBox="0 0 16 16">
   <path d="M1.5 1.5A.5.5 0 0 1 2 1h12a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.128.334L10 8.692V13.5a.5.5 0 0 1-.342.474l-3 1A.5.5 0 0 1 6 14.5V8.692L1.628 3.834A.5.5 0 0 1 1.5 3.5z"/>
-</svg>:</label>
+</svg></label>
         <select id="filterSelect">
-            <option value="all">All</option>
-            <option value="completed">Completed</option>
-            <option value="pending">Pending</option>
+            <option value="all">All Tasks</option>
+            <option value="completed">Completed Tasks</option>
+            <option value="pending">Pending Tasks</option>
         </select>
     </div>
     <div class="sort">
@@ -92,19 +101,20 @@
             <path d="M5 12h14"/><path d="M12 5v14"/></svg><h4>Add task</h4></button>
     </div>
     <div id="toggleFavorites">
-  <span>⭐️ Favorites (<span id="favCount">0</span>)</span>
-</div>
-<div id="favoriteList" class="favorite-list" style="display:none;" ></div>
+        <span>⭐️ Favorites (<span id="favCount">0</span>)</span>
+    </div>
+    <div id="favoriteList" class="favorite-list" style="display:none;"></div>
 
-<div id="taskContainer"></div>
+    <div id="taskContainer"></div>
     <div id="taskContainer" class="task-container"></div>
     <!--add tasks-->
     <div class="popupBox" id="popupOverlay" aria-hidden="true">
         <div class="popup" role="dialog" aria-modal="true">
             <button class="close-btn" id="closeBtn" type="button" aria-label="close">&times;</button>
-            <iframe id="popupIframe"  src="../window/indexadd.html"></iframe>
+            <iframe id="popupIframe" src="../window/indexadd.html"></iframe>
         </div>
     </div>
     <script src="OT.js"></script>
 </body>
+
 </html>
