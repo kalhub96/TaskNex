@@ -3,3 +3,67 @@ form { display:flex; flex-direction:column; gap:8px; }
 input, textarea, button { padding:8px; border-radius:6px; border:1px solid #ccc; }
 button { background:#007bff; color:#fff; border:none; cursor:pointer; }
 button:disabled { opacity:0.6; cursor:not-allowed; }
+
+.task{
+    height: 100%;
+}
+
+/* calandar popup styles */
+
+.calander{
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    width: 320px;
+    padding: 20px;
+}
+
+.calander-header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.calander-header button{
+    background: #007bff;
+    color: white;
+    border: none;
+    padding: 5px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.calander-header button :hover{
+    background: #0056b3;
+}
+
+.day-names, .days{
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 5px;
+}
+
+.day-names div{
+    text-align: center;
+    font-weight: bold;
+    padding: 5px 0;
+}
+
+.days div{
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.days div :hover{
+    background: #e0e0e0;
+}
+
+.today{ 
+    background: #007bff;
+    color: white;
+}
