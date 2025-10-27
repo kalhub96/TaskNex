@@ -426,6 +426,10 @@ iframe {
     transition: width 0.4s ease-in-out;
 }
 
+#toggleFavorites{
+    cursor: pointer;
+}
+
 .search {
     display: flex;
     position: relative;
@@ -459,18 +463,29 @@ iframe {
     max-width: 200px;
 }
 
-.filter select {
-    width: 100%;
-    padding: 10px 40px 10px 12px;
-    border: 1px solid #ccc;
-    border-radius: 1px;
-    font-size: 16px;
-}
-
 .filter svg {
+    cursor: pointer;
     position: absolute;
-    right: 170px;
+    right: 200px;
     top: 50%;
     transform: translateY(-50%);
+    transition: transform 0.3s ease;
     color: #888;
 }
+
+#filterSelect {
+    position: absolute;
+    top: 5px;
+    padding: 6px 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    background-color: #fff;
+}
+
+#filterWrapper {
+    cursor: pointer;
+    position: absolute;
+    top: 24px;
+}
+
+

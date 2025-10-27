@@ -200,4 +200,38 @@ searchInput.addEventListener('keyup', function(e) {
         }
     });
 });
-constfilterSelect = document.querySelectorAll('.filter select');
+
+// --- Filter functionality based on progress and filter visiblity---
+const filterWrapper = document.getElementById('filterWrapper');
+const filterSelect = document.getElementById('filterSelect');
+
+// Toggle filter dropdown visibility
+filterWrapper.addEventListener('click', () => {
+    filterSelect.style.display = filterSelect.style.display === 'none' ? 'block' : 'none';
+});
+
+if (filterSelect) {
+    filterSelect.addEventListener('change', () =>{
+        const filterValue = filterSelect.value;
+        const taskCards = document.querySelectorAll('.taskCard');
+        taskCards.forEach(card => {
+            // Get progress percentage from the progress bar width
+            const progressFill = card.querySelector('.progress-fill');
+            const progressvalue = parseFloat(progressFill.style.width);
+
+            // determine visibility 
+            if (filterValue === 'all') {
+                card.style.display = '';
+            }
+            else if (filterValue === 'completed' && progressvalue === 100) {
+                card.style.display = '';
+            }
+            else if (filterValue === 'pending' && progressvalue < 100) {
+                card.style.display = '';
+            }
+            else {
+                card.style.display = 'none';
+            }       
+    });
+});
+}
