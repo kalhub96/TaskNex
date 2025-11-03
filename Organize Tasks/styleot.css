@@ -39,13 +39,17 @@ header {
     }
 }
 
-.pi {
+.side button{
+    font-family: Verdana;
     position: relative;
-    left: 1rem;
-    width: 35px;
-    height: 35px;
-    border-radius: 50%;
-    background: var(--primary-color);
+    top: .0111rem;
+    left: .7rem;
+    text-decoration: none;
+    color: var(--text-color);
+    background: none;
+    border: none;
+    font-size: large;
+    cursor: pointer;
 }
 
 .pn {
@@ -53,15 +57,6 @@ header {
     position: relative;
     top: 3.5px;
     left: .7rem;
-}
-
-.pn button {
-    text-decoration: none;
-    color: var(--text-color);
-    background: none;
-    border: none;
-    font-size: large;
-    cursor: pointer;
 }
 
 .ls {
@@ -122,6 +117,14 @@ header {
     padding-top: 20px;
     box-shadow: var(--shadow-color)2px 2px;
     display: none;
+}
+
+.sidebar h5{
+    font-family: Verdana;
+    font-size: medium;
+    position: relative;
+    top: 1.3rem;
+    left: 1rem;
 }
 
 .sidebar button {
