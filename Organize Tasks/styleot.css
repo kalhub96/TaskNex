@@ -157,18 +157,32 @@ header {
 }
 
 .sidebar .ot,
-.sidebar .st,
 .sidebar .tp,
-.sidebar .mp,
-.sidebar .sr,
-.sidebar .ca,
-.sidebar .pw,
-.sidebar .cwt,
-.sidebar .gt,
-.sidebar .lo {
+.sidebar .pw
+{
     position: relative;
     top: -1rem;
     left: .8rem;
+    width: 12rem;
+    height: 2rem;
+    margin-bottom: 10px;
+    border-radius: .5rem;
+}
+
+.sidebar .lo{
+    position: relative;
+    top: 22rem;
+    left: .8rem;
+    width: 12rem;
+    height: 2rem;
+    margin-bottom: 10px;
+    border-radius: .5rem;
+}
+
+.sidebar .st{
+    position: relative;
+    top: 19.3rem;
+    left: 9rem;
     width: 12rem;
     height: 2rem;
     margin-bottom: 10px;
@@ -237,7 +251,7 @@ header {
     overflow: hidden;
     width: 80%;
     max-width: 800px;
-    height: 80%;
+    height: 52%;
     box-shadow: var(--shadow-color) 3px 3px;
     position: relative;
 }
@@ -257,7 +271,6 @@ iframe {
     border: none;
     cursor: pointer;
 }
-
 
 /* Grid layout */
 
@@ -490,5 +503,3 @@ iframe {
     position: absolute;
     top: 24px;
 }
-
-
