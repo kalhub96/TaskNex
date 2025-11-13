@@ -16,7 +16,17 @@
       <textarea id="description" placeholder="Task description" required></textarea>
       <input id="deadline" type="date" />
       <button type="submit" id="addBtn">Add Task</button>
-    </form>    
+    </form> 
+    <div class="checklist-section">
+      <h4>checklist</h4>
+      <div class="checklist-input">
+    <form id="taskDet">
+      <input type="text" placeholder="Add checklist item..." id='mainInput'>
+      <button type="button" id="addChecklistBtn">+</button>
+      </div>
+      <ul id="taskList"></ul>
+    </form>  
+    </div> 
    </div>
     <script src="Taskcard.js"></script>
 </body>

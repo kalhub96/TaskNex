@@ -157,18 +157,32 @@ header {
 }
 
 .sidebar .ot,
-.sidebar .st,
 .sidebar .tp,
-.sidebar .mp,
-.sidebar .sr,
-.sidebar .ca,
-.sidebar .pw,
-.sidebar .cwt,
-.sidebar .gt,
-.sidebar .lo {
+.sidebar .pw
+{
     position: relative;
     top: -1rem;
     left: .8rem;
+    width: 12rem;
+    height: 2rem;
+    margin-bottom: 10px;
+    border-radius: .5rem;
+}
+
+.sidebar .lo{
+    position: relative;
+    top: 22rem;
+    left: .8rem;
+    width: 12rem;
+    height: 2rem;
+    margin-bottom: 10px;
+    border-radius: .5rem;
+}
+
+.sidebar .st{
+    position: relative;
+    top: 19.3rem;
+    left: 9rem;
     width: 12rem;
     height: 2rem;
     margin-bottom: 10px;
@@ -237,7 +251,7 @@ header {
     overflow: hidden;
     width: 80%;
     max-width: 800px;
-    height: 80%;
+    height: 52%;
     box-shadow: var(--shadow-color) 3px 3px;
     position: relative;
 }
@@ -257,7 +271,6 @@ iframe {
     border: none;
     cursor: pointer;
 }
-
 
 /* Grid layout */
 
@@ -491,4 +504,44 @@ iframe {
     top: 24px;
 }
 
+/* --- Checklist styling --- */
+.checklist {
+    list-style: none;
+    padding-left: 0;
+    margin-top: 10px;
+    display: none; /* hidden by default */
+}
 
+.checklist li {
+    margin-bottom: 8px;
+    font-size: 14px;
+    color: #333;
+}
+
+.checklist input[type="checkbox"] {
+    margin-right: 8px;
+    transform: scale(1.2);
+    cursor: pointer;
+}
+
+/* --- Show/Hide toggle button --- */
+.showChecklistBtn {
+    background: #4CAF50;
+    color: white;
+    padding: 4px 8px;
+    font-size: 12px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-bottom: 6px;
+}
+
+.showChecklistBtn:hover {
+    background: #45a049;
+}
+
+/* --- Completed checklist item --- */
+.checklist li.completed label {
+    text-decoration: line-through;
+    color: #888;
+}

@@ -6,12 +6,9 @@
 
 :root{
     --body-color: #eeeeee;
-    --primary-color: #005a34;
-    --hover-color: #1fe64a;
     --text-color: #231F20;
     --border-color: #f2ecff;
     --shadow-color: #b6b6b6;
-    --sidebar-color: #003d25;
 }
 
 body{
@@ -99,65 +96,20 @@ html:focus{
     text-align: center;
 }
 
-.sidebar{
-    height: 100%;
-    width: 500px;
-    position: fixed;
-    z-index: 1;
-    top: 0;
-    left: 0;
-    background-color: var(--body-color);
-    overflow-x: hidden;
-    padding-top: 20px;
-    box-shadow:var(--shadow-color)2px 2px;
-    display: none;
+.get{
+    position: absolute;
+    left: 37rem;
+    top: 30rem;
 }
 
-.sidebar button{
-    position: relative;
-    top:-1rem;
-    left: 10rem;
+.get a{
     text-decoration: none;
-    background:none;
     color: var(--text-color);
+}
+
+.get button{
     border: none;
-    text-align: left;
-    cursor: pointer;
-    outline: none;
-    width: 100%;
-    padding: 12px 16px;
-    font-size: 30px;
-}
-
-.sidebar li{
-    position: relative;
-    top: -2.4rem;
-    left: 2rem;
-    font-size: small;
-}
-
-.sidebar svg{
-    position: relative;
-    top: -.7rem;
-    left: .1rem;
-}
-
-.sidebar .ot, .sidebar .st, .sidebar .tp, .sidebar .mp, .sidebar .sr, .sidebar .ca, .sidebar .pw, .sidebar .cwt, .sidebar .gt, .sidebar .lo{
-    position: relative;
-    top: -1rem;
-    left: .8rem;
-    width: 12rem;
-    height: 2rem;
-    margin-bottom: 10px;
-    border-radius: .5rem;
-}
-
-.sidebar ul{
-    list-style-type: none;
-    margin: 1px;
-}
-
-.sidebar ul a{
     text-decoration: none;
+    background: none;
     color: var(--text-color);
 }
