@@ -503,3 +503,45 @@ iframe {
     position: absolute;
     top: 24px;
 }
+
+/* --- Checklist styling --- */
+.checklist {
+    list-style: none;
+    padding-left: 0;
+    margin-top: 10px;
+    display: none; /* hidden by default */
+}
+
+.checklist li {
+    margin-bottom: 8px;
+    font-size: 14px;
+    color: #333;
+}
+
+.checklist input[type="checkbox"] {
+    margin-right: 8px;
+    transform: scale(1.2);
+    cursor: pointer;
+}
+
+/* --- Show/Hide toggle button --- */
+.showChecklistBtn {
+    background: #4CAF50;
+    color: white;
+    padding: 4px 8px;
+    font-size: 12px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-bottom: 6px;
+}
+
+.showChecklistBtn:hover {
+    background: #45a049;
+}
+
+/* --- Completed checklist item --- */
+.checklist li.completed label {
+    text-decoration: line-through;
+    color: #888;
+}
