@@ -25,15 +25,6 @@ html:focus{
     margin-bottom: .1rem;
 }
 
-.pi{
-    position: relative;
-    left: 1rem;
-    width: 35px;
-    height: 35px;
-    border-radius: 50%;
-    background: var(--primary-color);
-}
-
 .pn{
     font-family:Verdana;
     font-size: large;

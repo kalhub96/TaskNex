@@ -172,7 +172,7 @@ header {
 .sidebar .lo{
     position: relative;
     top: 22rem;
-    left: .8rem;
+    left: 6rem;
     width: 12rem;
     height: 2rem;
     margin-bottom: 10px;
@@ -181,7 +181,7 @@ header {
 
 .sidebar .st{
     position: relative;
-    top: 19.3rem;
+    top: 20.5rem;
     left: 9rem;
     width: 12rem;
     height: 2rem;
@@ -197,6 +197,16 @@ header {
 .sidebar ul a {
     text-decoration: none;
     color: var(--text-color);
+}
+
+.sidebar .pi{
+    position: relative;
+    top: 18rem;
+    left: 1rem;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    background: var(--primary-color);
 }
 
 .add {
