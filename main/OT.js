@@ -169,7 +169,7 @@ function deleteTask(taskId) {
 }
 
 // --- Popup ---
-function openPopup(srcPath = '/window/indexadd.html') {
+function openPopup(srcPath = 'addbut.html') {
     iframe.src = srcPath;
     popupBox.style.display = 'flex';
     popupBox.setAttribute('aria-hidden', 'false');
