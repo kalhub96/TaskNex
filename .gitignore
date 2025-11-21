@@ -1,0 +1,22 @@
+#Node.js
+node_modules/
+npm-debug.log
+yarn-error.log
+
+#Environment files
+.evn 
+.evn.local
+.evn.development
+.evn.production
+
+#Build_files
+dist/
+build/
+
+#Logs
+logs/
+*.logs 
+
+#Backend sensitive files
+config/*.json
+secrets/
