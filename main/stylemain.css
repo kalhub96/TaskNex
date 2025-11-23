@@ -29,13 +29,13 @@ html:focus{
     font-family:Verdana;
     font-size: large;
     position: relative;
-    top: -25px;
-    left: 3.6rem; 
+    top: 10px;
+    left: 2rem; 
 }
 
 .ls{
     position: relative;
-    top: -45px;
+    top: -6px;
     left: 77rem; 
     display: inline-block;
     line-height: 1;
@@ -56,8 +56,8 @@ html:focus{
 
 .si{
     position: relative;
-    top: -45px;
-    left: 77.5rem; 
+    top: -6px;
+    left: 77rem; 
     display: inline-block;
     line-height: 1;
     margin: 0;
