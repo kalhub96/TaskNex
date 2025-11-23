@@ -1,22 +1,76 @@
-#Node.js
+# Dependencies
 node_modules/
-npm-debug.log
-yarn-error.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
 
-#Environment files
-.evn 
-.evn.local
-.evn.development
-.evn.production
+# Environment files (FIXED TYPOS)
+.env
+.env.*
+.env.local
+.env.development
+.env.production
+.dev.vars
 
-#Build_files
+# Build files (FIXED)
 dist/
 build/
+.output/
+.vercel/
+.netlify/
+.wrangler/
 
-#Logs
+# Logs (FIXED)
 logs/
-*.logs 
+*.log
+npm-debug.log*
+lerna-debug.log*
 
-#Backend sensitive files
-config/*.json
+# Runtime data
+pids/
+*.pid
+*.seed
+*.pid.lock
+
+# Testing
+coverage/
+.nyc_output/
+*.lcov
+
+# IDEs and editors
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# PM2
+.pm2/
+ecosystem.config.js.backup
+
+# Temporary files
+*.tmp
+*.temp
+.cache/
+
+# Cloudflare
+.dev.vars
+.wrangler/
+
+# Backend sensitive files (MORE SPECIFIC)
+config/secrets.json
+config/production.json
 secrets/
+*.key
+*.pem
+*.p12
+.secrets
+
+# OS files
+.DS_Store
+Thumbs.db

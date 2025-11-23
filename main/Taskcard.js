@@ -28,10 +28,6 @@ form.addEventListener('submit', (e) => {
   const description = document.getElementById('description').value.trim();
   const deadline = document.getElementById('deadline').value;
 
-  if (!title || !description) {
-    alert('Please fill in title and description');
-    return;
-  }
 
   const taskData = {
     title,

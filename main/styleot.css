@@ -24,6 +24,7 @@ html:focus {
 
 header {
     display: flex;
+    margin-bottom: 10px;
 }
 
 .had {
@@ -42,8 +43,8 @@ header {
 .side button{
     font-family: Verdana;
     position: relative;
-    top: .0111rem;
-    left: .7rem;
+    top: .3rem;
+    left: 1.2rem;
     text-decoration: none;
     color: var(--text-color);
     background: none;
@@ -55,14 +56,14 @@ header {
 .pn {
     font-family: Verdana;
     position: relative;
-    top: 3.5px;
-    left: .7rem;
+    top: 10px;
+    left: 1.5rem;
 }
 
 .ls {
     position: relative;
-    top: 7px;
-    left: 70rem;
+    top: 9px;
+    left: 72rem;
     display: inline-block;
     line-height: 1;
     margin: 0;
@@ -84,8 +85,8 @@ header {
 
 .si {
     position: relative;
-    top: 7px;
-    left: 70.5rem;
+    top: 9px;
+    left: 72.5rem;
     display: inline-block;
     line-height: 1;
     margin: 0;
