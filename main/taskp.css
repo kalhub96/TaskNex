@@ -9,9 +9,10 @@
     --primary-color: #005a34;
     --hover-color: #1fe64a;
     --text-color: #231F20;
-    --border-color: #f2ecff;
+    --border-color: #e1dfe6;
     --shadow-color: #b6b6b6;
     --sidebar-color: #003d25;
+    --accent-color: #4caf50;
 }
 
 body {
@@ -24,7 +25,8 @@ html:focus {
 
 header {
     display: flex;
-    margin-bottom: 10px;
+    padding: 10px;
+    margin: 5px;
 }
 
 .had {
@@ -213,8 +215,164 @@ header {
 .title h3{
     font-size: 2rem;
     position: relative;
-    top: 3rem;
     color: var(--text-color);
     margin-bottom: 20px;
     text-align: center;
+    padding: 50px;
+    margin: 10px;
+}
+
+.box1{
+    position: relative;
+    left: 2.5rem;
+    top: 1rem;
+    background-color: lightgrey;
+    width: 90%;
+    height: 20rem;
+    padding: 50px;
+    margin: 20px;
+    border-radius: 1rem;
+}
+
+.box1 h4{
+    font-size: 1.2rem;
+    font-weight: bold;
+    position: relative;
+    text-align: center;
+    top: -2rem;
+}
+
+.progress{
+    position: relative;
+    left: 1rem;
+    top: 1rem;
+    background-color: #616161;
+    width: 90%;
+    height: .4rem;
+    padding: 5px;
+    margin: 1px;
+    border-radius: 1rem;
+}
+
+.week{
+    position: relative;
+    top: 2rem;
+}
+
+.progressW{
+    position: relative;
+    left: 1rem;
+    top: 3rem;
+    background-color: #616161;
+    width: 90%;
+    height: .4rem;
+    padding: 5px;
+    margin: 1px;
+    border-radius: 1rem;
+}
+
+.mont{
+    position: relative;
+    top: 4rem;
+}
+
+.progresM{
+    position: relative;
+    left: 1rem;
+    top: 5rem;
+    background-color: #616161;
+    width: 90%;
+    height: .4rem;
+    padding: 5px;
+    margin: 1px;
+    border-radius: 1rem;
+}
+
+.box2{
+    position: relative;
+    left: 2.5rem;
+    top: 1rem;
+    background-color: lightgrey;
+    width: 90%;
+    height: 20rem;
+    padding: 50px;
+    margin: 20px;
+    border-radius: 1rem;
+}
+
+.box2 h4{
+    font-size: 1.2rem;
+    font-weight: bold;
+    position: relative;
+    text-align: center;
+    top: -2rem;
+}
+
+.box3{
+    position: relative;
+    left: 2.5rem;
+    top: 1rem;
+    background-color: lightgrey;
+    width: 90%;
+    height: 20rem;
+    padding: 50px;
+    margin: 20px;
+    border-radius: 1rem;
+}
+
+.box3 h4{
+    font-size: 1.2rem;
+    font-weight: bold;
+    position: relative;
+    text-align: center;
+    top: -2rem;
+}
+
+.box4{
+    position: relative;
+    left: 2.5rem;
+    top: 1rem;
+    background-color: lightgrey;
+    width: 90%;
+    height: 20rem;
+    padding: 50px;
+    margin: 20px;
+    border-radius: 1rem;
+}
+
+.box4 h4{
+    font-size: 1.2rem;
+    font-weight: bold;
+    position: relative;
+    text-align: center;
+    top: -2rem;
+}
+
+.box5{
+    position: relative;
+    left: 2.5rem;
+    top: 1rem;
+    background-color: lightgrey;
+    width: 90%;
+    height: 20rem;
+    padding: 50px;
+    margin: 20px;
+    border-radius: 1rem;
+}
+
+.box5 h4{
+    font-size: 1.2rem;
+    font-weight: bold;
+    position: relative;
+    text-align: center;
+    top: -2rem;
+}
+
+.fill {
+    height: 100%;
+    width: 0%;
+    background: var(--accent-color,#4caf50);
+    border-radius: inherit;
+    transition: width .4s ease;
+    position: relative;
 }
