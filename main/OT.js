@@ -118,6 +118,16 @@ function renderTasks() {
                         t.checklist[idx].done = e.target.checked;
                         saveTasks();
                         renderTasks(); // update progress
+                        
+                        const progress = calculateProgress(t);
+
+                        //Mark completion time
+                        if (progress === 100 && !t.completedAt){t.completedAt = new Data().toISOString();
+                        }
+                        saveTasks();
+
+                        // send totals to server
+                        updateTotalProgress();
                     }
                 });
             });
@@ -250,3 +260,51 @@ document.addEventListener("DOMContentLoaded", () => {
     renderTasks();
     updateFavoriteSection();
 });
+
+function calculateOverallProgress() {
+    if (task.length === 0 ) return 0;
+
+    let total = 0;
+    task.forEach(t => {
+        total += calculateProgress(t);
+    });
+    return Math.round(total/tasks.length);
+}
+
+function calculateweeklyProgress(){
+    const now = new Date();
+    const currentWeek = getWeekNumber(now);
+
+    const WeeklyTasks = tasks.filter(t => {
+        if (!t.completedAt) return false;
+        return getWeekNumber(new Date(t.completedAt)) === currentWeek;
+    });
+    if (WeeklyTasks.length ===  0)
+        return 0;
+
+    return
+    Math.round((monthlyTasks.length / tasks.length) * 100);
+}
+
+//Helper: Week number
+function getWeekNumber(date) {
+    const firstJun = new Date(date.getFullYear(),0,1);
+    const days = Math.floor((date - firstJun) / (24*60*60*1000));
+    return Math.ceil((days + firstJun.getDay() + 1) / 7);
+}
+
+async function updateTotalProgress() {
+    const overall = calculateOverallProgress();
+    const Weekly = calculateWeeklyProgress();
+    const Monthly = calculateMonthlyProgress();
+
+    await fetch("/save-progress", {
+        method:"POST",
+        headers: { "Content-Type": "application/json"},
+        body: JSON.stringify({
+            overall,
+            Weekly,
+            monthly
+        })
+    });
+}
