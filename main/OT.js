@@ -261,6 +261,7 @@ document.addEventListener("DOMContentLoaded", () => {
     updateFavoriteSection();
 });
 
+
 function calculateOverallProgress() {
     if (task.length === 0 ) return 0;
 
@@ -307,4 +308,16 @@ async function updateTotalProgress() {
             monthly
         })
     });
+}
+
+function updateTaskToServer(task) {
+    fetch('/update-task-progress', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(task)
+    })
+    .then(res => res.json())
+    .then(result => console.log("Updated:", result))
+    .catch(err => console.error("API Error:", e)
+    )
 }
